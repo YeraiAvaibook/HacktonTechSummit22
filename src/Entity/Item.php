@@ -1,11 +1,13 @@
 <?php
 
+namespace Entity;
+
 class Item
 {
     private string $name;
     private string $position;
 
-    public function __construct($name, $position)
+    public function __construct(string $name, string $position)
     {
         $this->name = $name;
         $this->position = $position;

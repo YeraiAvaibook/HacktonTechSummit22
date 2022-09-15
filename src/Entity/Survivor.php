@@ -1,13 +1,15 @@
 <?php
 
+namespace Entity;
+
 class Survivor
 {
-    private $name;
-    private $life;
-    private $level;
-    private $experience;
-    private $item;
-    private $position;
+    private string $name;
+    private int $life;
+    private int $level;
+    private int $experience;
+    private string $item;
+    private string $position;
 
     public function __construct($name, $life, $level, $experience, $item, $position){
         $this->name = $name;
