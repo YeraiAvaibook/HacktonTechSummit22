@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  hackaton_2022:
+    platform: linux/x86_64
+    container_name: hackaton_2022
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    image: hackaton_2022:1.0.0
+    environment:
+      PHP_IDE_CONFIG: serverName=hackaton_2022
+    user: 1000:1000
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - ${DOCKER_PHP_PORTS}
+    dns:
+      - 8.8.8.8
