@@ -1,5 +1,6 @@
 <?php
 
+namespace Entity;
 class Map {
 
     private int $width;

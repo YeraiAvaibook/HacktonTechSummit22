@@ -1,5 +1,6 @@
 <?php
 
+namespace Entity;
 class Zombie {
 
     private string $name;
