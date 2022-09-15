@@ -36,7 +36,6 @@ class GameFileReader
         $this->stepQty      = $definitions[4];
 
         // for the next survivorsQty lines and populate and array of survivors
-
         for ($i = 0; $i < $this->survivorsQty; $i++) {
             $survivorData = explode(' ', $lines[ $this->processedLines ]);
             $this->lineProcessed();
@@ -65,9 +64,6 @@ class GameFileReader
 
                     break;
             }
-
-
-            print("<pre>" . print_r($this->survivors, true) . "</pre>");
         }
     }
 
