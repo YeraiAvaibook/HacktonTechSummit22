@@ -1,5 +1,7 @@
 <?php
 
+namespace Hackaton\Zombies\Helper;
+
 final class FileReader
 {
     public static function read(string $path): array
