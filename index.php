@@ -8,9 +8,9 @@
                 'exp' => 1,
                 'items' => [
                     'leftHand' => null,
-                    'rightHand' => 'machete',
+                    'rightHand' => 'Machete',
                     'backpack' => [
-                        'rubber-duck'
+                        'RubberDuck'
                     ],
                 ],
                 'positionX' => 2,
@@ -21,7 +21,7 @@
                 'live' => 3,
                 'exp' => 3,
                 'items' => [
-                    'leftHand' => 'knife',
+                    'leftHand' => 'Knife',
                     'rightHand' => null,
                     'backpack' => null,
                 ],
@@ -49,6 +49,23 @@
                 'positionY' => 3,
             ],
         ],
+        'items' => [
+            [
+                'name' => 'Handgun',
+                'positionX' => 0,
+                'positionY' => 0,
+            ],
+            [
+                'name' => 'Katana',
+                'positionX' => 5,
+                'positionY' => 1,
+            ],
+            [
+                'name' => 'Molotov',
+                'positionX' => 0,
+                'positionY' => 3,
+            ],
+        ]
     ];
 
     function createBoard($gameData)
@@ -56,6 +73,7 @@
         $boardSize = $gameData['boardSize'];
         $survivors = $gameData['survivors'];
         $zombies = $gameData['zombies'];
+        $items = $gameData['items'];
 
         $board = '<table>';
 
@@ -66,7 +84,9 @@
                 $board .= '<td class="tile'.rand(1, 3).'" data-row="'.$row.'" data-column="'.$column.'">';
 
                 $survivorPrinted = false;
+                $zombiePrinted = false;
 
+                // Print survivors
                 foreach ($survivors as $key => $survivor) {
                     if ($survivor['positionX'] == $column && $survivor['positionY'] == $row) {
                         $board .= '<img src="assets/images/survivor'.$key.'.png" />';
@@ -74,10 +94,21 @@
                     }
                 }
 
+                // Print zombies
                 if (!$survivorPrinted) {
                     foreach ($zombies as $key => $zombie) {
                         if ($zombie['positionX'] == $column && $zombie['positionY'] == $row) {
                             $board .= '<img src="assets/images/zombie'.$key.'.png" />';
+                            $zombiePrinted = true;
+                        }
+                    }
+                }
+
+                // Print items
+                if (!$survivorPrinted && !$zombiePrinted) {
+                    foreach ($items as $item) {
+                        if ($item['positionX'] == $column && $item['positionY'] == $row) {
+                            $board .= '<img src="assets/images/'.$item['name'].'.png" />';
                         }
                     }
                 }
