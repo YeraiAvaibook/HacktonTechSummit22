@@ -20,6 +20,7 @@ class GameFileReader
 
     public function __construct(string $path) {
         // Read all file lines
+        $processedLines = 1;
         $lines = FileReader::read($path);
 
         // First line indicate number of survivors, zombies, items
@@ -31,9 +32,13 @@ class GameFileReader
         $this->mapSize = $definitions[3];
         $this->stepQty = $definitions[4];
 
-        // for the next survivorsqty lines and populate and array of survivors
+        // for the next survivorsQty lines and populate and array of survivors
         for ($i = 0; $i <= $this->survivorsQty; $i++) {
+            $survivor = $lines[$processedLines];
+            print("<pre>".print_r($survivor,true)."</pre>");
 
+
+            $processedLines++;
         }
     }
 
