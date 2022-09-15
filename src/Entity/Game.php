@@ -1,6 +1,6 @@
 <?php
 
-namespace Entity;
+namespace Hackaton\Zombies\Entity;
 
 use Hackaton\Zombies\Helper\GameFileReader;
 
