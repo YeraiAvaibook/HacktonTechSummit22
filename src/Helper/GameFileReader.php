@@ -37,6 +37,46 @@ class GameFileReader
         }
     }
 
+    public function getLines()
+    {
+        return $this->lines;
+    }
+
+    public function setLines($lines)
+    {
+        $this->lines = $lines;
+    }
+
+    public function getSurvivors()
+    {
+        return $this->survivors;
+    }
+
+    public function setSurvivors($survivors)
+    {
+        $this->survivors = $survivors;
+    }
+
+    public function getZombies()
+    {
+        return $this->zombies;
+    }
+
+    public function setZombies($zombies)
+    {
+        $this->zombies = $zombies;
+    }
+
+    public function getItems()
+    {
+        return $this->items;
+    }
+
+    public function setItems($items)
+    {
+        $this->items = $items;
+    }
+
 
     private function parseEntity() {
 
