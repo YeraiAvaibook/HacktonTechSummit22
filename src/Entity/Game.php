@@ -11,7 +11,6 @@ class Game
     public function __construct(GameFileReader $gameFileReader)
     {
         $this->gameFileReader = $gameFileReader;
-        var_dump($this->gameFileReader->getSurvivors());
     }
 
 
