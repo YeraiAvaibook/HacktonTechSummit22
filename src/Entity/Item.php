@@ -2,8 +2,8 @@
 
 class Item
 {
-    private $name;
-    private $position;
+    private string $name;
+    private string $position;
 
     public function __construct($name, $position)
     {
