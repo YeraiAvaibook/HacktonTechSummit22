@@ -5,7 +5,6 @@ namespace Entity;
 class Map {
 
     private int $width;
-
     private int $height;
 
     public function __construct(int $width, int $height)
