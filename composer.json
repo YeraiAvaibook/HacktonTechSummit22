@@ -1,0 +1,10 @@
+{
+    "name": "hackaton/zombies",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Hackaton\\Zombies\\": "src/"
+        }
+    },
+    "require": {}
+}
