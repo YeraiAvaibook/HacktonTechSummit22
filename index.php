@@ -1,4 +1,12 @@
 <?php
+require_once 'vendor/autoload.php';
+
+use Hackaton\Zombies\Entity\Game;
+use Hackaton\Zombies\Helper\GameFileReader;
+
+    $fileReader = new GameFileReader('assets/steps/example.txt');
+    new Game($fileReader);
+
     function createBoard($size = 6)
     {
         $board = '<table>';
