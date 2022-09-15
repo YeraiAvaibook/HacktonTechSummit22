@@ -10,7 +10,7 @@ class Game
 
     public function __construct(GameFileReader $gameFileReader)
     {
-        $this->gameFileReader = $gameFileReader;
+        $this->gameFileReader = $gameFileReader; 
     }
 
 
