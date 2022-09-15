@@ -5,6 +5,7 @@ namespace Hackaton\Zombies\Helper;
 class GameFileReader
 {
     private array $lines;
+    private array $linesData;
 
     private int $survivorsQty;
     private int $zombieQty;
@@ -17,17 +18,17 @@ class GameFileReader
     private array $zombies;
     private array $items;
 
-    private int $processedLines;
+    private int $lineStep;
 
     public function __construct(string $path)
     {
-        $this->processedLines = 0;
+        $this->lineStep = 0;
         // Read all file lines
         $lines = FileReader::read($path);
 
         // First line indicate number of survivors, zombies, items
         $definitions = explode(' ', $lines[0]);
-        $this->lineProcessed();
+        $this->newLine();
 
         $this->survivorsQty = $definitions[0];
         $this->zombieQty    = $definitions[1];
@@ -37,8 +38,8 @@ class GameFileReader
 
         // for the next survivorsQty lines and populate and array of survivors
         for ($i = 0; $i < $this->survivorsQty; $i++) {
-            $survivorData = explode(' ', $lines[ $this->processedLines ]);
-            $this->lineProcessed();
+            $survivorData = explode(' ', $lines[ $this->lineStep ]);
+            $this->newLine();
 
             $equipmentQty = $survivorData[2];
 
@@ -48,23 +49,36 @@ class GameFileReader
             $this->survivors[ $i ]['items']       = [];
             $this->survivors[ $i ]['coordinates'] = [$survivorData[3], $survivorData[4]];
 
-
-            switch ($equipmentQty) {
-                case 1:
-                    $this->survivors[ $i ]['items'][] = $this->processSurvivorItem($lines[ $this->processedLines ]);
-                    $this->lineProcessed();
-
-                    break;
-                case 2:
-                    $this->survivors[ $i ]['items'][] = $this->processSurvivorItem($this->processedLines);
-                    $this->lineProcessed();
-
-                    $this->survivors[ $i ]['items'][] = $this->processSurvivorItem($this->processedLines);
-                    $this->lineProcessed();
-
-                    break;
+            if($equipmentQty) {
+                for ($j = 0; $j < $equipmentQty; $j++) {
+                    $this->survivors[ $i ]['items'][] = $this->processSurvivorItem($lines[ $this->lineStep ]);
+                    $this->newLine();
+                }
             }
         }
+
+        for ($i = 0; $i < $this->zombieQty; $i++) {
+            $zombieData = explode(' ', $lines[ $this->lineStep ]);
+            $this->zombies[$i]['name'] = $zombieData[0];
+            $this->zombies[$i]['coordinates'] = [$zombieData[1], $zombieData[2]];
+            $this->newLine();
+        }
+
+        for ($i = 0; $i < $this->itemQty; $i++) {
+            $itemData = explode(' ', $lines[ $this->lineStep ]);
+            $this->items[$i]['name'] = $itemData[0];
+            $this->items[$i]['coordinates'] = [$itemData[1], $itemData[2]];
+            $this->newLine();
+        }
+
+        for ($i = 0; $i < $this->stepQty; $i++) {
+            $stepData = explode(' ', $lines[ $this->lineStep ]);
+            $this->items[$i]['movement'] = $stepData[0];
+            $this->items[$i]['survivor'] = $stepData[1];
+            $this->items[$i]['direction'] = $stepData[2];
+            $this->newLine();
+        }
+
     }
 
     public function getLines()
@@ -108,9 +122,9 @@ class GameFileReader
     }
 
 
-    private function lineProcessed(): void
+    private function newLine(): void
     {
-        ++$this->processedLines;
+        ++$this->lineStep;
     }
 
     private function processSurvivorItem($line): array
