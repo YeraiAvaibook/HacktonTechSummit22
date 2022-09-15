@@ -1,14 +1,38 @@
 div#application-container {
-    width: 60%;
+    width: 50%;
     margin: 0 auto;
 }
 
-table {
-    width: 100%
+table
+{
+    table-layout: fixed;
+    width: 100%;
+}
+table, td
+{
+    border: solid 2px #D1D3D5;
+    border-collapse: collapse;
+    padding: 3px 4px;
+    text-align: center;
+    height: 8vw;
+}
+img
+{
+    width: 64%;
 }
 
-td {
-    height: 120px;
-    border: 1px solid grey;
+td.tile1 {
+    background-image: url("../../assets/images/tile1.png");
+}
+
+td.tile2 {
+    background-image: url("../../assets/images/tile2.png");
+}
+
+td.tile3 {
     background-image: url("../../assets/images/tile3.png");
+}
+
+td > img {
+    height: 50%;
 }
