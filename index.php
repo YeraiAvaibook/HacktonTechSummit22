@@ -1,5 +1,4 @@
 <?php
-
     $gameData = [
         'boardSize' => '6',
         'survivors' => [
