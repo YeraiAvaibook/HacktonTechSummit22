@@ -1,11 +1,11 @@
 <?php
 
+namespace Entity;
+
 class Zombie {
 
     private string $name;
-
     private int $coordinateX;
-
     private int $coordinateY;
 
     public function __construct(string $name, int $coordinateX, int $coordinateY)
